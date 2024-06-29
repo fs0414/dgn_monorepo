@@ -1,18 +1,19 @@
 package product
 
-package (
+import (
 	"fmt"
+
 	"github.com/google/uuid"
 )
 
 type Product struct {
-	id string
-	ownerID string
-	name string
+	id          string
+	ownerID     string
+	name        string
 	description string
-	price int64
-	stock int	
-} 
+	price       int64
+	stock       int
+}
 
 func newProduct(
 	id string,
@@ -26,15 +27,15 @@ func newProduct(
 		return nil, fmt.Errorf("ownerIDの値が不正です")
 	}
 	if price < 1 {
-		fmt.Println("価格が不正です")		
+		fmt.Println("価格が不正です")
 	}
 	return &Product{
-		id: id,
-		ownerID: ownerID,
-		name: name,
+		id:          id,
+		ownerID:     ownerID,
+		name:        name,
 		description: description,
-		price: price,
-		stock: stock,
+		price:       price,
+		stock:       stock,
 	}, nil
 }
 
@@ -52,22 +53,22 @@ func Reconatruct(
 		name,
 		description,
 		price,
-		stock
+		stock,
 	)
 }
 
 func NewProduc(
-	ownerID string	
+	ownerID string,
 	name string,
 	description string,
 	price int64,
 	stock int,
 ) (*Product, error) {
 	return newProduct(
-	    uuid.New(),
+		uuid.New(),
 		name,
 		description,
 		price,
-		stock
+		stock,
 	)
 }

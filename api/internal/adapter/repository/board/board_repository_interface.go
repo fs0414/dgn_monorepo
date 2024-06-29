@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/fs0414/go_hobby/internal/infrastructure/model"
+	"github.com/fs0414/internal/infrastructure/model"
 )
 
 type BoardRepositoryImpl interface {

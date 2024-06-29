@@ -1,18 +1,18 @@
 package router
 
 import (
-    "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
 
-    "github.com/fs0414/go_hobby/internal/usecase"
-	"github.com/fs0414/go_hobby/internal/adapter/repository/user"
-	"github.com/fs0414/go_hobby/internal/service/user"
+	repository "github.com/fs0414/internal/adapter/repository/user"
+	service "github.com/fs0414/internal/service/user"
+	"github.com/fs0414/internal/usecase"
 )
 
 func SetUserRoutes(rg *gin.RouterGroup) {
 	uc := usecase.UserUseCaseFactory(
 		repository.UserRepositoryFactory(),
 		service.UserServiceFactory(),
-    )
+	)
 
 	rg.GET("/users", uc.FetchUsers)
 	rg.POST("/signup", uc.SignUp)

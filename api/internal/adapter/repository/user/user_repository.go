@@ -1,12 +1,13 @@
 package repository
+
 // "github.com/fs0414/go_hobby/internal/adapter/repository"
 
 import (
-	"github.com/fs0414/go_hobby/internal/infrastructure/database"
-	"github.com/fs0414/go_hobby/internal/infrastructure/model"
+	"github.com/fs0414/internal/infrastructure/database"
+	"github.com/fs0414/internal/infrastructure/model"
 )
 
-type UserRepository struct {}
+type UserRepository struct{}
 
 func UserRepositoryFactory() UserRepositoryImpl {
 	return &UserRepository{}
@@ -15,7 +16,7 @@ func UserRepositoryFactory() UserRepositoryImpl {
 func (repo *UserRepository) GetUsers() ([]model.User, error) {
 	db := database.GetDb()
 	var users []model.User
-    result := db.Find(&users)
+	result := db.Find(&users)
 
 	if result.Error != nil {
 		return nil, result.Error
@@ -35,11 +36,11 @@ func (repo *UserRepository) CreateUser(user model.User) (model.User, error) {
 
 func (repo *UserRepository) FindByCredentials(email string) (model.User, error) {
 	db := database.GetDb()
-    var user model.User
-    
+	var user model.User
+
 	if err := db.Where("email =?", email).First(&user).Error; err != nil {
 		return model.User{}, err
-    }
-	
-    return user, nil
+	}
+
+	return user, nil
 }

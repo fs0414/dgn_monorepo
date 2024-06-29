@@ -1,0 +1,11 @@
+FROM oven/bun:latest
+
+WORKDIR /workspace
+
+COPY . .
+# RUN bun init
+COPY ./next/package.json ./
+COPY ./next/bun.lockb ./
+RUN bun i
+
+CMD ["bun", "run", "dev"]

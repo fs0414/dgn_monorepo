@@ -1,4 +1,4 @@
-module github.com/fs0414/go_hobby
+module github.com/fs0414
 
 go 1.20
 

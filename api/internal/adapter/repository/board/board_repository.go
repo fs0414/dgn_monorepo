@@ -1,14 +1,14 @@
 package repository
 
 import (
-	"github.com/fs0414/go_hobby/internal/infrastructure/database"
-	"github.com/fs0414/go_hobby/internal/infrastructure/model"
+	"github.com/fs0414/internal/infrastructure/database"
+	"github.com/fs0414/internal/infrastructure/model"
 )
 
-type BoardRepository struct {}
+type BoardRepository struct{}
 
 func BoardRepositoryFactory() BoardRepositoryImpl {
-    return &BoardRepository{}
+	return &BoardRepository{}
 }
 
 func (r *BoardRepository) GetBoards() ([]model.Board, error) {
@@ -16,9 +16,9 @@ func (r *BoardRepository) GetBoards() ([]model.Board, error) {
 	var boards []model.Board
 	result := db.Find(&boards)
 
-	if result.Error!= nil {
-        return nil, result.Error
-    }
+	if result.Error != nil {
+		return nil, result.Error
+	}
 
 	return boards, nil
 }
@@ -35,10 +35,10 @@ func (repo *BoardRepository) CreateBoard(board model.Board) (model.Board, error)
 
 func (repo *BoardRepository) DeleteBoard(boardIdInt int) error {
 	db := database.GetDb()
-    result := db.Delete(&model.Board{}, boardIdInt)
-    if result.Error!= nil {
-        return result.Error
-    }
+	result := db.Delete(&model.Board{}, boardIdInt)
+	if result.Error != nil {
+		return result.Error
+	}
 
-    return nil
+	return nil
 }
